@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Flow - Desktop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Left Side - Branding/Info -->
+        <div class="left-panel">
+            <div class="brand-section">
+                <h1>Welcome to Our Platform</h1>
+                <p>Join thousands of users who trust our secure authentication system</p>
+            </div>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <span>Secure Authentication</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <span>Fast & Reliable</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌍</div>
+                    <span>Global Access</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Authentication Forms -->
+        <div class="right-panel">
+            <!-- Status Bar (Desktop Style) -->
+            <div class="status-bar">
+                <div class="time">9:40</div>
+                <div class="status-icons">
+                    <div class="wifi-icon"></div>
+                    <div class="signal-icon"></div>
+                    <div class="battery-icon"></div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <button class="back-btn" id="backBtn">
+                    <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+                        <path d="M20 8H2M2 8L8 2M2 8L8 14" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Step 1: Login Options -->
+            <div class="auth-step active" id="step1">
+                <div class="step-content">
+                    <h2 class="step-title">Let's you in</h2>
+                    
+                    <div class="social-buttons">
+                        <button class="social-btn google-btn">
+                            <span>Continue with Google</span>
+                        </button>
+                        <button class="social-btn facebook-btn">
+                            <span>Continue with Facebook</span>
+                        </button>
+                        <button class="social-btn apple-btn">
+                            <span>Continue with Apple</span>
+                        </button>
+                    </div>
+
+                    <div class="divider">
+                        <span>or</span>
+                    </div>
+
+                    <button class="primary-btn" onclick="nextStep()">
+                        Sign in with password
+                    </button>
+
+                    <div class="signup-link">
+                        <span>Don't have an account?</span>
+                        <a href="#" onclick="goToStep(4)">Sign up</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Profile Completion (Empty) -->
+            <div class="auth-step" id="step2">
+                <div class="step-content">
+                    <div class="step-header">
+                        <h2 class="step-title">Complete your profile</h2>
+                        <button class="skip-btn">Skip</button>
+                    </div>
+                    
+                    <p class="step-description">
+                        Don't worry only you can see your personal data. No one else will be able to see it.
+                    </p>
+
+                    <div class="profile-avatar">
+                        <div class="avatar-placeholder">
+                            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                                <path d="M22 22C26.4183 22 30 18.4183 30 14C30 9.58172 26.4183 6 22 6C17.5817 6 14 9.58172 14 14C14 18.4183 17.5817 22 22 22Z" fill="currentColor"/>
+                                <path d="M22 26C14.268 26 8 32.268 8 40H36C36 32.268 29.732 26 22 26Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Full Name" id="fullName">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+254 710201985" id="phoneNumber">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select id="gender">
+                            <option value="">Select Gender</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="dateOfBirth">
+                    </div>
+
+                    <button class="continue-btn" onclick="nextStep()">CONTINUE</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Profile Completion (Filled) -->
+            <div class="auth-step" id="step3">
+                <div class="step-content">
+                    <div class="step-header">
+                        <h2 class="step-title">Complete your profile</h2>
+                        <button class="skip-btn">Skip</button>
+                    </div>
+                    
+                    <p class="step-description">
+                        Don't worry only you can see your personal data. No one else will be able to see it.
+                    </p>
+
+                    <div class="profile-avatar">
+                        <img src="https://placehold.co/139x132" alt="Profile" class="avatar-image">
+                    </div>
+
+                    <div class="form-group filled">
+                        <label>Full Name</label>
+                        <input type="text" value="Arthur Prince" id="fullNameFilled">
+                    </div>
+
+                    <div class="form-group filled">
+                        <label>Phone Number</label>
+                        <input type="tel" value="+254 710201985" id="phoneNumberFilled">
+                    </div>
+
+                    <div class="form-group filled">
+                        <label>Gender</label>
+                        <select id="genderFilled">
+                            <option value="male" selected>Male</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group filled">
+                        <label>Date of Birth</label>
+                        <input type="date" value="1999-08-22" id="dateOfBirthFilled">
+                    </div>
+
+                    <button class="continue-btn" onclick="nextStep()">CONTINUE</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Create Account (Empty) -->
+            <div class="auth-step" id="step4">
+                <div class="step-content">
+                    <div class="step-header">
+                        <h2 class="step-title">Create an account</h2>
+                        <div class="celebration-icon">🎉</div>
+                    </div>
+                    
+                    <p class="step-description">
+                        Enter your username, email & password.<br>
+                        If you forget it, then you have to do forgot password.
+                    </p>
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" placeholder="Username" id="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Email" id="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input">
+                            <input type="password" placeholder="Password" id="password">
+                            <button type="button" class="toggle-password">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <div class="password-input">
+                            <input type="password" placeholder="Confirm password" id="confirmPassword">
+                            <button type="button" class="toggle-password">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+
+                    <button class="continue-btn" onclick="nextStep()">CONTINUE</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Create Account (Filled) -->
+            <div class="auth-step" id="step5">
+                <div class="step-content">
+                    <div class="step-header">
+                        <h2 class="step-title">Create an account</h2>
+                        <div class="celebration-icon">🎉</div>
+                    </div>
+                    
+                    <p class="step-description">
+                        Enter your username, email & password.<br>
+                        If you forget it, then you have to do forgot password.
+                    </p>
+
+                    <div class="form-group filled">
+                        <label>Username</label>
+                        <input type="text" value="ArtbyBA" id="usernameFilled">
+                    </div>
+
+                    <div class="form-group filled">
+                        <label>Email</label>
+                        <input type="email" value="Email@gmail.com" id="emailFilled">
+                    </div>
+
+                    <div class="form-group filled">
+                        <label>Password</label>
+                        <div class="password-input">
+                            <input type="password" value="••••••" id="passwordFilled">
+                            <button type="button" class="toggle-password">👁️</button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group filled">
+                        <label>Confirm Password</label>
+                        <div class="password-input">
+                            <input type="password" value="••••••" id="confirmPasswordFilled">
+                            <button type="button" class="toggle-password">👁️</button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group checked">
+                        <input type="checkbox" id="rememberMeFilled" checked>
+                        <label for="rememberMeFilled">Remember me</label>
+                    </div>
+
+                    <button class="continue-btn" onclick="nextStep()">CONTINUE</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Success Modal -->
+            <div class="auth-step" id="step6">
+                <div class="step-content">
+                    <div class="success-modal">
+                        <div class="success-icon">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                <circle cx="40" cy="40" r="40" fill="#B45309"/>
+                                <path d="M25 40L35 50L55 30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="success-title">Sign up Successful!</h2>
+                        <p class="success-description">
+                            Your account has been created.<br>
+                            Please wait a moment, we are<br>
+                            preparing for you.
+                        </p>
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Hello Screen -->
+            <div class="auth-step" id="step7">
+                <div class="step-content">
+                    <h1 class="hello-title">Hello there</h1>
+                </div>
+            </div>
+
+            <!-- Step 8: Country Selection -->
+            <div class="auth-step" id="step8">
+                <div class="step-content">
+                    <h2 class="step-title">Which country are you from?</h2>
+                    <p class="step-description">
+                        Please select your country of origin for a<br>
+                        better recommendations.
+                    </p>
+
+                    <div class="search-container">
+                        <input type="text" placeholder="Search Country" class="search-input">
+                        <div class="search-icon">🔍</div>
+                    </div>
+
+                    <div class="country-list">
+                        <div class="country-item">
+                            <div class="country-flag afghanistan"></div>
+                            <span class="country-code">AF</span>
+                            <span class="country-name">Afghanistan</span>
+                        </div>
+                        <div class="country-item">
+                            <div class="country-flag albania"></div>
+                            <span class="country-code">AL</span>
+                            <span class="country-name">Albania</span>
+                        </div>
+                        <div class="country-item">
+                            <div class="country-flag algeria"></div>
+                            <span class="country-code">DZ</span>
+                            <span class="country-name">Algeria</span>
+                        </div>
+                        <div class="country-item">
+                            <div class="country-flag andorra"></div>
+                            <span class="country-code">AD</span>
+                            <span class="country-name">Andorra</span>
+                        </div>
+                    </div>
+
+                    <button class="continue-btn" onclick="nextStep()">CONTINUE</button>
+                </div>
+            </div>
+
+            <!-- Step 9: Country Selected -->
+            <div class="auth-step" id="step9">
+                <div class="step-content">
+                    <h2 class="step-title">Which country are you from?</h2>
+                    <p class="step-description">
+                        Please select your country of origin for a<br>
+                        better recommendations.
+                    </p>
+
+                    <div class="search-container selected">
+                        <div class="selected-country">
+                            <div class="search-icon">🔍</div>
+                            <div class="country-flag kenya"></div>
+                            <span class="country-name">Kenya</span>
+                        </div>
+                    </div>
+
+                    <div class="country-list">
+                        <div class="country-item selected">
+                            <div class="country-flag kenya"></div>
+                            <span class="country-code">KE</span>
+                            <span class="country-name">Kenya</span>
+                        </div>
+                    </div>
+
+                    <button class="continue-btn" onclick="completeFlow()">CONTINUE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
